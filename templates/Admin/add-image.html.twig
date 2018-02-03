@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ form_start(form) }}
+	{{ form_errors(form) }}
+
+	{{ form_widget(form.file) }}
+
+	<input type="submit" name="save" value="Envoyer">
+
+	{{ form_end(form) }}
+{% endblock %}

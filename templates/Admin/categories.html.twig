@@ -1,0 +1,43 @@
+{% extends 'Admin/index.html.twig' %}
+
+{% block adminBody %}
+	<a href="{{ path('addCategory' )}}">Ajouter une catégorie</a>
+	
+	<table class="table table-condensed">
+									
+		<tr>
+			<td>Titre</td>
+			<td>Action</td>
+		</tr>
+
+		{% for category in categories %}
+			<tr>
+				<td>{{ category.name }}</td>
+				<td>
+
+					<a href="{{ path('editCategory', { 'id': category.id }) }}" class="btn btn-info btn-xs"><span title="Edit" class="glyphicon glyphicon-edit"></span></a>
+				
+					<button data-toggle="modal" data-target="#categoryDialog{{ category.id }}" class="btn btn-danger btn-xs" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
+				
+					<div class="modal fade" id="categoryDialog{{ category.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" arria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" arria-hidden="true">&times;</button>
+									<h4>Confirmation needed</h4>
+								</div>
+								<div class="modal-body">
+									Do you really want to delete this category ?
+								</div>
+								<div class="modal-footer">
+									<a href="{{ path('deleteCategory', { 'id': category.id }) }}" class="btn btn-danger">Confirm</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
+

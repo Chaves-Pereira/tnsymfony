@@ -1,0 +1,42 @@
+{% extends 'Admin/index.html.twig' %}
+
+{% block adminBody %}
+	<a href="{{ path('addMenu' )}}">Ajouter un menu</a>
+	
+	<table class="table table-condensed">
+									
+		<tr>
+			<td>Titre</td>
+			<td>Action</td>
+		</tr>
+
+		{% for menu in menus %}
+			<tr>
+				<td>{{ menu.name }}</td>
+				<td>
+
+					<a href="{{ path('editMenu', { 'id': menu.id }) }}" class="btn btn-info btn-xs"><span title="Edit" class="glyphicon glyphicon-edit"></span></a>
+				
+					<button data-toggle="modal" data-target="#menuDialog{{ menu.id }}" class="btn btn-danger btn-xs" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
+				
+					<div class="modal fade" id="menuDialog{{ menu.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" arria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" arria-hidden="true">&times;</button>
+									<h4>Confirmation needed</h4>
+								</div>
+								<div class="modal-body">
+									Do you really want to delete this menu ?
+								</div>
+								<div class="modal-footer">
+									<a href="{{ path('deleteMenu', { 'id': menu.id }) }}" class="btn btn-danger">Confirm</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

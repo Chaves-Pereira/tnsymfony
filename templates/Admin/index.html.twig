@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+
+	{% for message in app.session.flashbag.get('notice') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+<nav class="navbar navbar-default">
+	<ul class="nav navbar-nav">
+		<li><a href="{{ path('home') }}">Site</a></li>
+		<li><a href="{{ path('viewPages') }}">Pages</a></li>
+		<li><a href="{{ path('viewCategories') }}">Catégories</a></li>
+		<li><a href="{{ path('viewMenus') }}">Menus</a></li>
+	</ul>
+</nav>
+
+{% block adminBody %}{% endblock %}
+
+{% endblock %}

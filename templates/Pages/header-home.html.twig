@@ -1,0 +1,26 @@
+<header style="background: url('/images/639823.jpg') no-repeat; background-size: cover;" class="container-fluid home">
+	<div class="row">
+
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			Bienvenue {{ app.user.username }} - <a href="{{ path('logout') }}">Déconnexion</a>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('admin') }}">Administration</a>
+			{% endif %}
+		{% else %}
+			<a href="{{ path('login') }}">Connexion</a>
+		{% endif %}
+	</div>
+
+	<div class="row">
+		{{ render(controller('App\\Controller\\MenuController::menuHeader')) }}
+	</div>
+	
+
+	<div class="titre-principal">
+		<h1>Le tour du numérique #2</h1>
+		<h2><span style="background:#ffffff;"> &nbsp;Du 14 au 29 septembre 2017&nbsp;</span></h2>
+		<h3>NANTES</h3>
+	</div>
+	
+	<p class="propulse hidden-sm hidden-xs"><span>Propulsé par</span><img src="" alt="logo maison emploi"></p>
+</header>

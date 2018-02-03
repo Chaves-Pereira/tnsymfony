@@ -1,0 +1,7 @@
+<nav class="navbar navbar-default col-md-8 col-xs-12">
+	<ul class="nav navbar-nav">
+		{% for link in menu.links %}
+			<li><a href="{{ link.url }}">{{ link.name }}</a></li>
+		{% endfor %}
+	</ul>
+</nav>

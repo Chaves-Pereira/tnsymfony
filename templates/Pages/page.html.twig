@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+	<div>
+		<img src="{{ asset(page.image.webPath) }}" alt="{{ page.image.alt }}">
+	</div>
+	<h2>{{ page.title }}</h2>
+	<p>{{ page.content }}</p>
+{% endblock %}

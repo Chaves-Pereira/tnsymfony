@@ -1,0 +1,42 @@
+{% extends 'Admin/index.html.twig' %}
+{% block adminBody %}
+<a href="{{ path('addPage') }}">Ajouter une page</a>
+<table class="table table-condensed">
+	<tr>
+		<td>Titre</td>
+		<td>Auteur</td>
+		<td>Action</td>
+	</tr>
+
+	{% for page in pages %}
+		<tr>
+			<td>{{ page.title }}</td>
+			<td>{{ page.author.username }}</td>
+			<td>
+				
+				<a href="{{ path('editPage', { 'id': page.id }) }}" class="btn btn-info btn-xs"><span title="Edit" class="glyphicon glyphicon-edit"></span></a>
+			
+				<button data-toggle="modal" data-target="#pageDialog{{ page.id }}" class="btn btn-danger btn-xs" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
+			
+				<div class="modal fade" id="pageDialog{{ page.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" arria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" arria-hidden="true">&times;</button>
+								<h4>Confirmation needed</h4>
+							</div>
+							<div class="modal-body">
+								Do you really want to delete this page ?
+							</div>
+							<div class="modal-footer">
+								<a href="{{ path('deletePage', { 'id': page.id }) }}" class="btn btn-danger">Confirm</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+{% endblock %}
+

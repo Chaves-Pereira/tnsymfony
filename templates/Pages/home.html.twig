@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{% include 'Pages/header-home.html.twig' %}
+	<div class="container-fluid">
+		<div class="row">
+
+		{% for page in pages %}
+
+			{% if page.image %}
+				{% set background = asset(page.image.webPath()) %}
+			{% else %}
+				{% set background = "" %}
+			{% endif %}
+			<div class="col-md-6 col-sm-12" style="background-image: url('{{ background }}'); background-size: cover;">
+				<h2>{{ page.title }}</h2>
+				<p>{{ page.content }}</p>
+				<p>Par {{ page.author.username }}</p>
+				<p>catagories :
+					{% for category in page.categories %}
+						{{ category.name }}
+					{% endfor %} 
+				</p>
+			</div>	
+		{% endfor %}
+
+		</div>
+		<div class="banniere">
+			
+		</div>
+	</div>
+	{% include 'Pages/footer.html.twig' %}
+{% endblock %}
